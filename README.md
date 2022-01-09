@@ -8,7 +8,7 @@ A service that finds all the pairs of two integers in an unsorted array that sum
 
 REST API is streaming, i.e. csv lines are fetched, processed and pushed back one-by-one.
 
-###Request Protocol
+### Request Protocol
 ```
 POST upload/{targetSum}
 Content-Type: text/csv
@@ -17,7 +17,7 @@ Content-Type: text/csv
 ...
 {csv}
 ```
-###Response Protocol
+### Response Protocol
 ```
 Content-Type: application/json
 {json}
@@ -26,7 +26,7 @@ Content-Type: application/json
 {json}
 ```
 
-###Example of Successful Request / Response
+### Example of Successful Request / Response
 ```
 POST upload/5
 Content-Type: text/csv
@@ -38,7 +38,7 @@ Content-Type: application/json
 { "pairs": [[2, 3], [5, 0]] }
 ```
 
-###Example of Malformed Request / Error Response
+### Example of Malformed Request / Error Response
 ```
 POST upload/5
 Content-Type: text/csv
@@ -50,8 +50,8 @@ Content-Type: application/json
 { "errorCode": "400", "message": "Couldn't parse one of the numbers. For input string: \"wrong\"" }
 ```
 
-##Testing Locally
+## Testing Locally
 
-1. Run the `TwoSumFinderApp`, optionally [enabling throttling]() in `TwoSumHttpRoutes`
+1. Run the `TwoSumFinderApp`, optionally [enabling throttling](https://github.com/andriiko/two-sum-finder/blob/main/src/main/scala/com/example/http/TwoSumHttpRoutes.scala#L29) in `TwoSumHttpRoutes`
 2. Install [httpie](https://httpie.io) to employ streaming: `brew install httpie`
 3. `http --stream POST localhost:8080/upload/5 < testfiles/input.csv`
